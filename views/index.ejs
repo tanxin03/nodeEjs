@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="header">onlineShop <span style='float:right'><span class='user'><%= userinfo %>欢迎您</span><span class='logout' onclick='logoutFn()'>注销</span></span> </div>
+        <div class="filter">
+            <div class="search">
+                <form method='GET' action="/">
+                    <div class="input">
+                        <input type="text" name="name" autocomplete="off" >
+                    </div>
+                    <div class="btn">
+                        <button onclick='queryFn()'>查 询</button>
+                    </div>
+                </form>
+            </div>
+            <div class="add">
+                <button onclick='addShopFn()'>添加商铺</button>
+            </div>
+        </div>
+        <%= JSON.stringify(products[0]) %>
+        <div class="content">
+            <table border="1" cellpadding='0' cellspacing='0'>
+                <tr>
+                    <th>name</th>
+                    <th>image</th>
+                    <th>creator</th>
+                    <th>number</th>
+                    <th>create time</th>
+                    <th>update time</th>
+                    <th>operator</th>
+                </tr>
+                <% for(var i=0;i<products.length;i++) {%>
+                <tr>
+                    <td><%= products[i].name %></td>
+                    <td class='imgBox'><img src="<%= products[i].image %>"></td>
+                    <td><%= products[i].creator %></td>
+                    <td><%= products[i].number %></td>
+                    <td><%= products[i].createTime %></td>
+                    <td><%= products[i].updateTime %></td>
+                    <td class="operator">
+                        <span onclick='deleteFn("<%= products[i].name %>")'>delete</span>
+                        <span onclick='editFn("<%= products[i].name %>")'>edit</span>
+                    </td>
+                </tr>
+               <%  } %>
+            </table>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    function deleteFn(name){
+        $.ajax({
+            type:'get',
+            url:'/doDelete',
+            data:{
+                name
+            },
+            success(res){
+                alert(res.msg)
+                location.reload()
+            }
+        })
+    }
+    function queryFn(){
+        document.querySelector('.search form').submit()
+    }
+    function addShopFn(){
+        window.location.href = '/add'
+        // $.ajax({
+        //     type:'post',
+        //     url:"",
+
+        // })
+    }
+    function editFn(name){
+        window.location.href = `/edit?name=${name}`
+    }
+    function logoutFn(){
+        location.href='/logout'
+    }
+</script>
+</html>

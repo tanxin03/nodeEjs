@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="header">onlineShop</div>
+        <div class="content">
+            <form class="form" method="POST" action='/addShop' enctype="multipart/form-data">
+                <div><input type="text" placeholder="请输入名字" name="name" autocomplete="off" ></div>
+                <div><input type="number" placeholder="请输入上传数量" name="number" autocomplete="off" ></div>
+                <div><input type="file" placeholder="请上传商品图片" name="image"></div>
+                <div><input type="submit" value="提交"></div>
+            </form>
+        </div>
+        
+    </div>
+</body>
+<script type="text/javascript">
+    function addShopFn(){
+        alert("添加")
+        // $.ajax({
+        //     type:'post',
+        //     url:"",
+
+        // })
+    }
+</script>
+</html>
