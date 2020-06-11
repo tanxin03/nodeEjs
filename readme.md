@@ -8,7 +8,8 @@ npm install mongodb
 ## 表： 
 * 1： products 店铺列表 
 * 2： user  用户表
-
+### 运行 
+  根目录执行 node index.js
 有问题请咨询QQ：1019039621
 
 
